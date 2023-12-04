@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="prisonsystemModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="dependent">
+    <Key>
+      <PropertyRef Name="did" />
+    </Key>
+    <Property Name="did" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pid" Type="Int32" />
+    <Property Name="prisonid" Type="Int32" />
+    <Property Name="dfname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="dlname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="realationship" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="phone" Type="Int32" />
+    <NavigationProperty Name="prison" Relationship="Self.FK_dependent_prison" FromRole="dependent" ToRole="prison" />
+    <NavigationProperty Name="prisoner" Relationship="Self.FK_dependent_prisoner" FromRole="dependent" ToRole="prisoner" />
+  </EntityType>
+  <EntityType Name="emploee">
+    <Key>
+      <PropertyRef Name="eid" />
+    </Key>
+    <Property Name="eid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pcid" Type="Int32" />
+    <Property Name="fname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="lname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="birthday" Type="DateTime" Precision="0" />
+    <Property Name="job" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="salary" Type="Int32" />
+    <NavigationProperty Name="prison" Relationship="Self.FK_emploee_prison" FromRole="emploee" ToRole="prison" />
+    <NavigationProperty Name="jailor" Relationship="Self.FK_jailor_emploee" FromRole="emploee" ToRole="jailor" />
+    <NavigationProperty Name="manager" Relationship="Self.FK_manager_emploee" FromRole="emploee" ToRole="manager" />
+  </EntityType>
+  <EntityType Name="jailor">
+    <Key>
+      <PropertyRef Name="jeid" />
+    </Key>
+    <Property Name="jeid" Type="Int32" Nullable="false" />
+    <Property Name="jprisonid" Type="Int32" />
+    <NavigationProperty Name="emploee" Relationship="Self.FK_jailor_emploee" FromRole="jailor" ToRole="emploee" />
+    <NavigationProperty Name="prison" Relationship="Self.FK_jailor_prison" FromRole="jailor" ToRole="prison" />
+    <NavigationProperty Name="prisoncells" Relationship="Self.FK_prisoncell_jailor" FromRole="jailor" ToRole="prisoncell" />
+    <NavigationProperty Name="prisoners" Relationship="Self.FK_prisoner_jailor" FromRole="jailor" ToRole="prisoner" />
+  </EntityType>
+  <EntityType Name="manager">
+    <Key>
+      <PropertyRef Name="meid" />
+    </Key>
+    <Property Name="meid" Type="Int32" Nullable="false" />
+    <Property Name="start" Type="DateTime" Precision="0" />
+    <Property Name="pmeid" Type="Int32" />
+    <NavigationProperty Name="emploee" Relationship="Self.FK_manager_emploee" FromRole="manager" ToRole="emploee" />
+    <NavigationProperty Name="prison" Relationship="Self.FK_manager_prison" FromRole="manager" ToRole="prison" />
+  </EntityType>
+  <EntityType Name="prison">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="phone" Type="Int32" />
+    <NavigationProperty Name="dependents" Relationship="Self.FK_dependent_prison" FromRole="prison" ToRole="dependent" />
+    <NavigationProperty Name="emploees" Relationship="Self.FK_emploee_prison" FromRole="prison" ToRole="emploee" />
+    <NavigationProperty Name="jailors" Relationship="Self.FK_jailor_prison" FromRole="prison" ToRole="jailor" />
+    <NavigationProperty Name="managers" Relationship="Self.FK_manager_prison" FromRole="prison" ToRole="manager" />
+    <NavigationProperty Name="prisoncells" Relationship="Self.FK_prisoncell_prison" FromRole="prison" ToRole="prisoncell" />
+    <NavigationProperty Name="prisoners" Relationship="Self.FK_prisoner_prison" FromRole="prison" ToRole="prisoner" />
+  </EntityType>
+  <EntityType Name="prisoncell">
+    <Key>
+      <PropertyRef Name="pcid" />
+    </Key>
+    <Property Name="pcid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="prisonid" Type="Int32" />
+    <Property Name="jeid" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="jailor" Relationship="Self.FK_prisoncell_jailor" FromRole="prisoncell" ToRole="jailor" />
+    <NavigationProperty Name="prison" Relationship="Self.FK_prisoncell_prison" FromRole="prisoncell" ToRole="prison" />
+    <NavigationProperty Name="prisoners" Relationship="Self.FK_prisoner_prisoncell" FromRole="prisoncell" ToRole="prisoner" />
+  </EntityType>
+  <EntityType Name="prisoner">
+    <Key>
+      <PropertyRef Name="pid" />
+    </Key>
+    <Property Name="pid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pjeid" Type="Int32" />
+    <Property Name="pcid" Type="Int32" />
+    <Property Name="prisonid" Type="Int32" />
+    <Property Name="pfname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="plname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="birthday" Type="DateTime" Precision="0" />
+    <Property Name="offence" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="startdate" Type="DateTime" Precision="0" />
+    <Property Name="freedate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="dependents" Relationship="Self.FK_dependent_prisoner" FromRole="prisoner" ToRole="dependent" />
+    <NavigationProperty Name="jailor" Relationship="Self.FK_prisoner_jailor" FromRole="prisoner" ToRole="jailor" />
+    <NavigationProperty Name="prison" Relationship="Self.FK_prisoner_prison" FromRole="prisoner" ToRole="prison" />
+    <NavigationProperty Name="prisoncell" Relationship="Self.FK_prisoner_prisoncell" FromRole="prisoner" ToRole="prisoncell" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="man">
+    <Key>
+      <PropertyRef Name="eid" />
+    </Key>
+    <Property Name="eid" Type="Int32" Nullable="false" />
+    <Property Name="pcid" Type="Int32" />
+    <Property Name="fname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="lname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="job" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="start" Type="DateTime" Precision="0" />
+  </EntityType>
+  <Association Name="FK_dependent_prison">
+    <End Role="prison" Type="Self.prison" Multiplicity="0..1" />
+    <End Role="dependent" Type="Self.dependent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="prison">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="dependent">
+        <PropertyRef Name="prisonid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dependent_prisoner">
+    <End Role="prisoner" Type="Self.prisoner" Multiplicity="0..1" />
+    <End Role="dependent" Type="Self.dependent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="prisoner">
+        <PropertyRef Name="pid" />
+      </Principal>
+      <Dependent Role="dependent">
+        <PropertyRef Name="pid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_emploee_prison">
+    <End Role="prison" Type="Self.prison" Multiplicity="0..1" />
+    <End Role="emploee" Type="Self.emploee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="prison">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="emploee">
+        <PropertyRef Name="pcid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_jailor_emploee">
+    <End Role="emploee" Type="Self.emploee" Multiplicity="1" />
+    <End Role="jailor" Type="Self.jailor" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="emploee">
+        <PropertyRef Name="eid" />
+      </Principal>
+      <Dependent Role="jailor">
+        <PropertyRef Name="jeid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_manager_emploee">
+    <End Role="emploee" Type="Self.emploee" Multiplicity="1" />
+    <End Role="manager" Type="Self.manager" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="emploee">
+        <PropertyRef Name="eid" />
+      </Principal>
+      <Dependent Role="manager">
+        <PropertyRef Name="meid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_jailor_prison">
+    <End Role="prison" Type="Self.prison" Multiplicity="0..1" />
+    <End Role="jailor" Type="Self.jailor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="prison">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="jailor">
+        <PropertyRef Name="jprisonid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_prisoncell_jailor">
+    <End Role="jailor" Type="Self.jailor" Multiplicity="0..1" />
+    <End Role="prisoncell" Type="Self.prisoncell" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jailor">
+        <PropertyRef Name="jeid" />
+      </Principal>
+      <Dependent Role="prisoncell">
+        <PropertyRef Name="jeid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_prisoner_jailor">
+    <End Role="jailor" Type="Self.jailor" Multiplicity="0..1" />
+    <End Role="prisoner" Type="Self.prisoner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jailor">
+        <PropertyRef Name="jeid" />
+      </Principal>
+      <Dependent Role="prisoner">
+        <PropertyRef Name="pjeid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_manager_prison">
+    <End Role="prison" Type="Self.prison" Multiplicity="0..1" />
+    <End Role="manager" Type="Self.manager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="prison">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="manager">
+        <PropertyRef Name="pmeid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_prisoncell_prison">
+    <End Role="prison" Type="Self.prison" Multiplicity="0..1" />
+    <End Role="prisoncell" Type="Self.prisoncell" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="prison">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="prisoncell">
+        <PropertyRef Name="prisonid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_prisoner_prison">
+    <End Role="prison" Type="Self.prison" Multiplicity="0..1" />
+    <End Role="prisoner" Type="Self.prisoner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="prison">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="prisoner">
+        <PropertyRef Name="prisonid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_prisoner_prisoncell">
+    <End Role="prisoncell" Type="Self.prisoncell" Multiplicity="0..1" />
+    <End Role="prisoner" Type="Self.prisoner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="prisoncell">
+        <PropertyRef Name="pcid" />
+      </Principal>
+      <Dependent Role="prisoner">
+        <PropertyRef Name="pcid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="prisonsystemEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="dependents" EntityType="Self.dependent" />
+    <EntitySet Name="emploees" EntityType="Self.emploee" />
+    <EntitySet Name="jailors" EntityType="Self.jailor" />
+    <EntitySet Name="managers" EntityType="Self.manager" />
+    <EntitySet Name="prisons" EntityType="Self.prison" />
+    <EntitySet Name="prisoncells" EntityType="Self.prisoncell" />
+    <EntitySet Name="prisoners" EntityType="Self.prisoner" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="mans" EntityType="Self.man" />
+    <AssociationSet Name="FK_dependent_prison" Association="Self.FK_dependent_prison">
+      <End Role="prison" EntitySet="prisons" />
+      <End Role="dependent" EntitySet="dependents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dependent_prisoner" Association="Self.FK_dependent_prisoner">
+      <End Role="prisoner" EntitySet="prisoners" />
+      <End Role="dependent" EntitySet="dependents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_emploee_prison" Association="Self.FK_emploee_prison">
+      <End Role="prison" EntitySet="prisons" />
+      <End Role="emploee" EntitySet="emploees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_jailor_emploee" Association="Self.FK_jailor_emploee">
+      <End Role="emploee" EntitySet="emploees" />
+      <End Role="jailor" EntitySet="jailors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_manager_emploee" Association="Self.FK_manager_emploee">
+      <End Role="emploee" EntitySet="emploees" />
+      <End Role="manager" EntitySet="managers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_jailor_prison" Association="Self.FK_jailor_prison">
+      <End Role="prison" EntitySet="prisons" />
+      <End Role="jailor" EntitySet="jailors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_prisoncell_jailor" Association="Self.FK_prisoncell_jailor">
+      <End Role="jailor" EntitySet="jailors" />
+      <End Role="prisoncell" EntitySet="prisoncells" />
+    </AssociationSet>
+    <AssociationSet Name="FK_prisoner_jailor" Association="Self.FK_prisoner_jailor">
+      <End Role="jailor" EntitySet="jailors" />
+      <End Role="prisoner" EntitySet="prisoners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_manager_prison" Association="Self.FK_manager_prison">
+      <End Role="prison" EntitySet="prisons" />
+      <End Role="manager" EntitySet="managers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_prisoncell_prison" Association="Self.FK_prisoncell_prison">
+      <End Role="prison" EntitySet="prisons" />
+      <End Role="prisoncell" EntitySet="prisoncells" />
+    </AssociationSet>
+    <AssociationSet Name="FK_prisoner_prison" Association="Self.FK_prisoner_prison">
+      <End Role="prison" EntitySet="prisons" />
+      <End Role="prisoner" EntitySet="prisoners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_prisoner_prisoncell" Association="Self.FK_prisoner_prisoncell">
+      <End Role="prisoncell" EntitySet="prisoncells" />
+      <End Role="prisoner" EntitySet="prisoners" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(prisonsystemModel1.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(prisonsystemModel1.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
