@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="prisonsystemModelStoreContainer" CdmEntityContainer="prisonsystemEntities">
+    <EntitySetMapping Name="dependents">
+      <EntityTypeMapping TypeName="prisonsystemModel.dependent">
+        <MappingFragment StoreEntitySet="dependent">
+          <ScalarProperty Name="did" ColumnName="did" />
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="prisonid" ColumnName="prisonid" />
+          <ScalarProperty Name="dfname" ColumnName="dfname" />
+          <ScalarProperty Name="dlname" ColumnName="dlname" />
+          <ScalarProperty Name="realationship" ColumnName="realationship" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="emploees">
+      <EntityTypeMapping TypeName="prisonsystemModel.emploee">
+        <MappingFragment StoreEntitySet="emploee">
+          <ScalarProperty Name="eid" ColumnName="eid" />
+          <ScalarProperty Name="pcid" ColumnName="pcid" />
+          <ScalarProperty Name="fname" ColumnName="fname" />
+          <ScalarProperty Name="lname" ColumnName="lname" />
+          <ScalarProperty Name="birthday" ColumnName="birthday" />
+          <ScalarProperty Name="job" ColumnName="job" />
+          <ScalarProperty Name="salary" ColumnName="salary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jailors">
+      <EntityTypeMapping TypeName="prisonsystemModel.jailor">
+        <MappingFragment StoreEntitySet="jailor">
+          <ScalarProperty Name="jeid" ColumnName="jeid" />
+          <ScalarProperty Name="jprisonid" ColumnName="jprisonid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="managers">
+      <EntityTypeMapping TypeName="prisonsystemModel.manager">
+        <MappingFragment StoreEntitySet="manager">
+          <ScalarProperty Name="meid" ColumnName="meid" />
+          <ScalarProperty Name="start" ColumnName="start" />
+          <ScalarProperty Name="pmeid" ColumnName="pmeid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="prisons">
+      <EntityTypeMapping TypeName="prisonsystemModel.prison">
+        <MappingFragment StoreEntitySet="prison">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="prisoncells">
+      <EntityTypeMapping TypeName="prisonsystemModel.prisoncell">
+        <MappingFragment StoreEntitySet="prisoncell">
+          <ScalarProperty Name="pcid" ColumnName="pcid" />
+          <ScalarProperty Name="prisonid" ColumnName="prisonid" />
+          <ScalarProperty Name="jeid" ColumnName="jeid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="prisoners">
+      <EntityTypeMapping TypeName="prisonsystemModel.prisoner">
+        <MappingFragment StoreEntitySet="prisoner">
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="pjeid" ColumnName="pjeid" />
+          <ScalarProperty Name="pcid" ColumnName="pcid" />
+          <ScalarProperty Name="prisonid" ColumnName="prisonid" />
+          <ScalarProperty Name="pfname" ColumnName="pfname" />
+          <ScalarProperty Name="plname" ColumnName="plname" />
+          <ScalarProperty Name="birthday" ColumnName="birthday" />
+          <ScalarProperty Name="offence" ColumnName="offence" />
+          <ScalarProperty Name="startdate" ColumnName="startdate" />
+          <ScalarProperty Name="freedate" ColumnName="freedate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="prisonsystemModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jails">
+      <EntityTypeMapping TypeName="prisonsystemModel.jail">
+        <MappingFragment StoreEntitySet="jail">
+          <ScalarProperty Name="job" ColumnName="job" />
+          <ScalarProperty Name="lname" ColumnName="lname" />
+          <ScalarProperty Name="fname" ColumnName="fname" />
+          <ScalarProperty Name="pcid" ColumnName="pcid" />
+          <ScalarProperty Name="eid" ColumnName="eid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mans">
+      <EntityTypeMapping TypeName="prisonsystemModel.man">
+        <MappingFragment StoreEntitySet="mans">
+          <ScalarProperty Name="start" ColumnName="start" />
+          <ScalarProperty Name="job" ColumnName="job" />
+          <ScalarProperty Name="lname" ColumnName="lname" />
+          <ScalarProperty Name="fname" ColumnName="fname" />
+          <ScalarProperty Name="pcid" ColumnName="pcid" />
+          <ScalarProperty Name="eid" ColumnName="eid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pcs">
+      <EntityTypeMapping TypeName="prisonsystemModel.pc">
+        <MappingFragment StoreEntitySet="pc">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="pcid" ColumnName="pcid" />
+          <ScalarProperty Name="job" ColumnName="job" />
+          <ScalarProperty Name="lname" ColumnName="lname" />
+          <ScalarProperty Name="fname" ColumnName="fname" />
+          <ScalarProperty Name="prisonid" ColumnName="prisonid" />
+          <ScalarProperty Name="eid" ColumnName="eid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="prisonsystemModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="prisonsystemModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="prisonsystemModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="prisonsystemModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="prisonsystemModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="prisonsystemModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="prisonsystemModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="prisonsystemModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="prisonsystemModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>
